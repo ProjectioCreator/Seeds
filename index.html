@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Robux Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --neon-blue: #00ffff;
+      --gold: #ffd700;
+      --bg-url: url('https://www.dexerto.com/cdn-image/wp-content/uploads/2024/02/16/roblox-how-to-get-free-robux.jpg?width=385&amp;quality=60&amp;format=auto 385w, https://www.dexerto.com/cdn-image/wp-content/uploads/2024/02/16/roblox-how-to-get-free-robux.jpg?width=768&amp;quality=60&amp;format=auto 768w, https://www.dexerto.com/cdn-image/wp-content/uploads/2024/02/16/roblox-how-to-get-free-robux.jpg?width=1200&amp;quality=60&amp;format=auto 1200w" src="https://www.dexerto.com/cdn-image/wp-content/uploads/2024/02/16/roblox-how-to-get-free-robux.jpg?width=1200&amp;quality=60&amp;format=auto');
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: var(--bg-url) no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      overflow: hidden;
+    }
+
+    .overlay {
+      background: rgba(10, 10, 10, 0.88);
+      backdrop-filter: blur(0px);
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+      opacity: 0.8;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .big-title {
+      font-size: 5vw;
+      text-align: center;
+      margin-bottom: 30px;
+      text-shadow: 0 0 12px var(--neon-blue), 0 0 24px white;
+    }
+
+    .box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 2px solid var(--gold);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 30px var(--gold);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    input, select, button {
+      font-family: 'Orbitron', sans-serif;
+      margin: 10px 0;
+      padding: 12px;
+      width: 100%;
+      border-radius: 8px;
+      border: 2px solid var(--neon-blue);
+      background-color: transparent;
+      color: var(--neon-blue);
+      font-size: 16px;
+      outline: none;
+      transition: 0.3s ease;
+    }
+
+    input:focus, select:focus, button:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .option-btn {
+      padding: 15px;
+      font-size: 16px;
+      border: 2px solid var(--neon-blue);
+      color: var(--neon-blue);
+      background: transparent;
+      box-shadow: 0 0 10px var(--neon-blue);
+      cursor: pointer;
+    }
+
+    .option-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      box-shadow: 0 0 20px var(--gold);
+    }
+
+    #continueBtn {
+      margin-top: 20px;
+      font-size: 18px;
+      display: none;
+    }
+
+    @media (max-width: 480px) {
+      .big-title {
+        font-size: 7vw;
+      }
+
+      .box {
+        padding: 20px;
+      }
+
+      .option-btn {
+        padding: 12px;
+        font-size: 14px;
+      }
+    }
+  </style>
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+</head>
+<body>
+
+<div class="overlay" id="mainUI">
+  <div class="big-title">Roblox Robux Generator</div>
+
+  <!-- Step 1 -->
+  <div class="box" id="inputBox">
+    <h2>Enter Username</h2>
+    <input type="text" id="nameInput" placeholder="Username">
+    <select id="deviceSelect">
+      <option value="">Select Device</option>
+      <option value="iOS">iOS</option>
+      <option value="Android">Android</option>
+      <option value="PC">PC</option>
+      <option value="PS4">PS4</option>
+      <option value="PS5">PS5</option>
+    </select>
+    <button onclick="proceed()">Proceed</button>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="box hidden" id="optionBox">
+    <h2>Select Robux Amount</h2>
+    <div class="options">
+      <button class="option-btn" onclick="selectOption('1000 Robux')">1000 Robux</button>
+      <button class="option-btn" onclick="selectOption('5000 Robux')">5000 Robux</button>
+      <button class="option-btn" onclick="selectOption('10000 Robux')">10000 Robux</button>
+      <button class="option-btn" onclick="selectOption('50000 Robux')">50000 Robux</button>
+    </div>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="box hidden" id="generatingBox">
+    <h2 id="generatingText">Generating...</h2>
+    <button id="continueBtn" onclick="window.location.href='https://pixegun3d.blogspot.com/2023/09/blog-post.html'">Continue</button>
+  </div>
+</div>
+
+<script>
+  function proceed() {
+    const name = document.getElementById('nameInput').value.trim();
+    const device = document.getElementById('deviceSelect').value;
+
+    if (!name || !device) {
+      alert("Please enter a username and select a device.");
+      return;
+    }
+
+    document.getElementById('inputBox').classList.add('hidden');
+    document.getElementById('optionBox').classList.remove('hidden');
+  }
+
+  function selectOption(robuxAmount) {
+    document.getElementById('mainUI').querySelectorAll('.box').forEach(b => b.classList.add('hidden'));
+    const generatingBox = document.getElementById('generatingBox');
+    generatingBox.classList.remove('hidden');
+
+    document.getElementById('generatingText').textContent = `Generating ${robuxAmount}...`;
+
+    setTimeout(() => {
+      document.getElementById('continueBtn').style.display = 'block';
+    }, 3200);
+  }
+</script>
+
+</body>
+</html>
